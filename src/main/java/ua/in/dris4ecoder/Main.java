@@ -1,7 +1,13 @@
 package ua.in.dris4ecoder;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
+import java.util.Map;
+
+import spark.ModelAndView;
+import spark.template.velocity.VelocityTemplateEngine;
+
+import static spark.Spark.*;
 
 /**
  * Created by Alex Korneyko on 15.05.2016.
@@ -10,6 +16,26 @@ public class Main {
 
     public static void main(String[] args) {
 
+        get("/", (request, response) -> {
+            String stringExpression;
+            Map<String, Object> model = new HashMap<>();
+
+            stringExpression = request.queryParams("expression");
+
+            double result = 0;
+            result = dResult(stringExpression);
+
+            stringExpression = stringExpression + " = " + result;
+            System.out.println(stringExpression);
+
+            model.put("result", stringExpression);
+            return new ModelAndView(model, "templates/calculator.vtl");
+        }, new VelocityTemplateEngine());
+    }
+
+    public static double dResult(String sExpression) {
+        if(sExpression == null)return 0;
+
         List<ExpressionElement> expression;
 
         Parser parser = new Parser();
@@ -17,17 +43,9 @@ public class Main {
         MultiOperandAddon multiOperandAddon = new MultiOperandAddon();
         ParenthesesAddon parenthesesAddon = new ParenthesesAddon();
 
-        String line = "";
-        while (!line.equals("0")) {
-            System.out.print("(Type 0 for exit) --> ");
-            Scanner scanner = new Scanner(System.in);
-            line = scanner.nextLine();
-
-            expression = parser.toExpressionElementSet(line);
-            parenthesesAddon.compute(expression);
-            multiOperandAddon.compute(expression);
-
-            System.out.println(simpleCalculator.compute(expression));
-        }
+        expression = parser.toExpressionElementSet(sExpression);
+        parenthesesAddon.compute(expression);
+        multiOperandAddon.compute(expression);
+        return simpleCalculator.compute(expression);
     }
 }
