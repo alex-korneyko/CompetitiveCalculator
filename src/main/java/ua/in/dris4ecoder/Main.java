@@ -15,33 +15,31 @@ import static spark.Spark.*;
 public class Main {
 
     public static void main(String[] args) {
-        port(880);
+        port(80);
 
         get("/", (request, response) -> {
-            String stringExpression;
             Map<String, Object> model = new HashMap<>();
-
-            stringExpression = request.queryParams("expression");
-
             double result = 0;
+
+            String stringExpression = request.queryParams("expression");
 
             try {
                 result = dResult(stringExpression);
             } catch (IllegalArgumentException e) {
-                stringExpression = stringExpression + " >>> Error! (" + e.getMessage() + ")";
+                stringExpression = stringExpression + " >>> Error! (" + e.getMessage() + ")<<<";
             }
 
-            if (stringExpression != null && stringExpression.charAt(stringExpression.length() - 1) != ')') {
-                stringExpression = stringExpression + " = " + result;
-            }
+            if (stringExpression != null) {
+                if (stringExpression.charAt(stringExpression.length() - 1) != '<') {
+                    stringExpression = stringExpression + " = " + result;
+                }
 
-            if (stringExpression != null && stringExpression.length() > 2
-                    && stringExpression.charAt(stringExpression.length() - 1) == '0'
-                    && stringExpression.charAt(stringExpression.length() - 2) == '.') {
-                stringExpression = stringExpression.substring(0, stringExpression.length() - 2);
+                if (stringExpression.length() > 2 && stringExpression.charAt(stringExpression.length() - 1) == '0' && stringExpression.charAt(stringExpression.length() - 2) == '.') {
+                    stringExpression = stringExpression.substring(0, stringExpression.length() - 2);
+                }
+            } else {
+                stringExpression = "";
             }
-
-            if (stringExpression == null) stringExpression="";
 
             System.out.println(stringExpression);
 

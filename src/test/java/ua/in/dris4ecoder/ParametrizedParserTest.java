@@ -31,6 +31,29 @@ public class ParametrizedParserTest {
     }
 
     /**
+     * Тесты с нормальными числовыми объектами и объектами мат-операций
+     *
+     * @throws Exception
+     */
+    @Test(timeout = 1000)
+    public void test1toExpressionElementSet() throws Exception {
+
+        assertEquals(expression, parser.toExpressionElementSet(stringExpression));
+    }
+
+    /**
+     * Тест в котором проверяется генерация исключения в случае нахождения
+     * в строковом выражении неизвестных символов
+     *
+     * @throws Exception
+     */
+    @Test(timeout = 1000, expected = IllegalArgumentException.class)
+    public void test2toExpressionElementSet() throws Exception {
+
+        assertEquals(expression, parser.toExpressionElementSet("1+a"));
+    }
+
+    /**
      * Список входных и ожидаемых выходных параметорв для параметризованных тестов.
      * Выходным параметром является коллекция объектов ExpressionElement,
      * полученная в результате парсинга входной строки String,
@@ -105,26 +128,5 @@ public class ParametrizedParserTest {
         });
     }
 
-    /**
-     * Тесты с нормальными числовыми объектами и объектами мат-операций
-     *
-     * @throws Exception
-     */
-    @Test(timeout = 1000)
-    public void test1toExpressionElementSet() throws Exception {
 
-        assertEquals(expression, parser.toExpressionElementSet(stringExpression));
-    }
-
-    /**
-     * Тест в котором проверяется генерация исключения в случае нахождения
-     * в строковом выражении неизвестных символов
-     *
-     * @throws Exception
-     */
-    @Test(timeout = 1000, expected = IllegalArgumentException.class)
-    public void test2toExpressionElementSet() throws Exception {
-
-        assertEquals(expression, parser.toExpressionElementSet("1+a"));
-    }
 }
