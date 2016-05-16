@@ -16,7 +16,7 @@ public class SimpleCalculator {
      * @param expression expression for calculate
      * @return result of the expression
      */
-    public double compute(List<ExpressionElement> expression) {
+    public double compute(List<ExpressionElement> expression) throws IllegalArgumentException {
         double operand1 = 0;
         double operand2 = 0;
         double result = 0;
@@ -63,7 +63,7 @@ public class SimpleCalculator {
                 if (operand2 != 0) {
                     result = operand1 / operand2;
                 } else {
-                    throw new IllegalArgumentException("Error. Division by zero");
+                    throw new IllegalArgumentException("Division by zero");
                 }
                 break;
         }

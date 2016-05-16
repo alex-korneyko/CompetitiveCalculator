@@ -48,7 +48,7 @@ public class ParenthesesAddon {
                         //Если дошли до начала выражения, а открывающая не найдена, то исключение
                         if (j == 0) {
                             expression.clear();
-                            throw new IllegalArgumentException("<-- To many closing parentheses!");
+                            throw new IllegalArgumentException("To many closing parentheses!");
                         }
                         //Если открывающая всё ещё не найдена, то заполнение "простого" выражения
                         //Элементы всё время вставляются на первое место, но т.к. в текущем цикле
@@ -81,7 +81,7 @@ public class ParenthesesAddon {
         //остались, то исключение
         if (expression.contains(new ExpressionElement(ElementType.OPEN_PARENTHESIS))) {
             expression.clear();
-            throw new IllegalArgumentException("<-- To many opening parentheses!");
+            throw new IllegalArgumentException("To many opening parentheses!");
         }
 
         //Выражение уже без скобок

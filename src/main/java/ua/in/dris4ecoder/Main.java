@@ -15,6 +15,7 @@ import static spark.Spark.*;
 public class Main {
 
     public static void main(String[] args) {
+        port(880);
 
         get("/", (request, response) -> {
             String stringExpression;
@@ -23,9 +24,16 @@ public class Main {
             stringExpression = request.queryParams("expression");
 
             double result = 0;
-            result = dResult(stringExpression);
 
-            stringExpression = stringExpression + " = " + result;
+            try {
+                result = dResult(stringExpression);
+            } catch (IllegalArgumentException e) {
+                stringExpression = stringExpression + " >>> Error! (" + e.getMessage() + ")";
+            }
+
+            if (stringExpression.charAt(stringExpression.length() - 1) != ')')
+                stringExpression = stringExpression + " = " + result;
+
             System.out.println(stringExpression);
 
             model.put("result", stringExpression);
@@ -33,8 +41,8 @@ public class Main {
         }, new VelocityTemplateEngine());
     }
 
-    public static double dResult(String sExpression) {
-        if(sExpression == null)return 0;
+    public static double dResult(String sExpression) throws IllegalArgumentException {
+        if (sExpression == null) return 0;
 
         List<ExpressionElement> expression;
 
