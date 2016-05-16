@@ -31,8 +31,17 @@ public class Main {
                 stringExpression = stringExpression + " >>> Error! (" + e.getMessage() + ")";
             }
 
-            if (stringExpression.charAt(stringExpression.length() - 1) != ')')
+            if (stringExpression != null && stringExpression.charAt(stringExpression.length() - 1) != ')') {
                 stringExpression = stringExpression + " = " + result;
+            }
+
+            if (stringExpression != null && stringExpression.length() > 2
+                    && stringExpression.charAt(stringExpression.length() - 1) == '0'
+                    && stringExpression.charAt(stringExpression.length() - 2) == '.') {
+                stringExpression = stringExpression.substring(0, stringExpression.length() - 2);
+            }
+
+            if (stringExpression == null) stringExpression="";
 
             System.out.println(stringExpression);
 
