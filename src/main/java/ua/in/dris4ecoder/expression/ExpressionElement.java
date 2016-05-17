@@ -1,6 +1,6 @@
-package ua.in.dris4ecoder;
+package ua.in.dris4ecoder.expression;
 
-import static ua.in.dris4ecoder.ElementType.*;
+import static ua.in.dris4ecoder.expression.ElementType.*;
 
 /**
  * Created by Alex Korneyko on 15.05.2016.

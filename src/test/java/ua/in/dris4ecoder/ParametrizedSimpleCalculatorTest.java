@@ -3,13 +3,15 @@ package ua.in.dris4ecoder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import ua.in.dris4ecoder.expression.ExpressionElement;
+import ua.in.dris4ecoder.mathematics.SimpleCalculator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
-import static ua.in.dris4ecoder.ElementType.*;
+import static ua.in.dris4ecoder.expression.ElementType.*;
 
 /**
  * SimpleCalculator Test

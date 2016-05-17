@@ -3,14 +3,15 @@ package ua.in.dris4ecoder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import ua.in.dris4ecoder.expression.ExpressionElement;
+import ua.in.dris4ecoder.mathematics.ParenthesesAddon;
+import ua.in.dris4ecoder.parsers.Parser;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;
-import static ua.in.dris4ecoder.ElementType.*;
-import static ua.in.dris4ecoder.ElementType.MULTIPLY;
 
 /**
  * Created by Alex Korneyko on 16.05.2016.

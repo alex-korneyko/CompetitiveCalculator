@@ -1,4 +1,7 @@
-package ua.in.dris4ecoder;
+package ua.in.dris4ecoder.mathematics;
+
+import ua.in.dris4ecoder.expression.ElementType;
+import ua.in.dris4ecoder.expression.ExpressionElement;
 
 import java.util.ArrayList;
 import java.util.List;

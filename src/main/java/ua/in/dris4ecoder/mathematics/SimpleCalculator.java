@@ -1,8 +1,10 @@
-package ua.in.dris4ecoder;
+package ua.in.dris4ecoder.mathematics;
+
+import ua.in.dris4ecoder.expression.ExpressionElement;
 
 import java.util.List;
 
-import static ua.in.dris4ecoder.ElementType.*;
+import static ua.in.dris4ecoder.expression.ElementType.*;
 
 /**
  * Created by Alex Korneyko on 15.05.2016.

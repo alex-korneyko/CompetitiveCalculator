@@ -1,4 +1,4 @@
-package ua.in.dris4ecoder;
+package ua.in.dris4ecoder.expression;
 
 /**
  * Created by Alex Korneyko on 15.05.2016.
