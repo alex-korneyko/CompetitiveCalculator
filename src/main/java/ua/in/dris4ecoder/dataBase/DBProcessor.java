@@ -18,11 +18,13 @@ public class DBProcessor {
     }
 
     public Connection getConnection(String url, String userName, String password) throws SQLException {
-        if(connection != null)
-            return connection;
+        if (connection == null)
+            connection = DriverManager.getConnection(url, userName, password);
 
-        connection = DriverManager.getConnection(url, userName, password);
-        System.out.println("Connection with database "+url+" established.");
+        System.out.println("Connection with database " + url + " established.");
+
+        CheckDataBase.check(url, userName, password);
+
         return connection;
 
     }

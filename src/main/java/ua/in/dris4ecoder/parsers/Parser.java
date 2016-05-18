@@ -28,6 +28,8 @@ public class Parser {
 
         for (char symbol : charExpression) {
 
+            if(symbol == ' ') continue;         //Игнор пробелов
+
             //формирование чисел
             if (symbol >= 48 && symbol <= 57) {
                 if (newNumber) {
