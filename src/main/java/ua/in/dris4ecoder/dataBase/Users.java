@@ -37,11 +37,6 @@ public class Users {
         return USER_NOT_FOUND;
     }
 
-    public static boolean logout(String userName, String userPassword) {
-
-        return false;
-    }
-
     public static boolean register(String userName, String userPassword) throws SQLException {
         if (login(userName, userPassword) == USER_FOUND || login(userName, userPassword) == WRONG_USER_PASSWORD)
             return false;

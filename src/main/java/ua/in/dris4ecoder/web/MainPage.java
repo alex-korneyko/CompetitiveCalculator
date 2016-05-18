@@ -49,13 +49,14 @@ public class MainPage {
                 }
             }
 
-            if(request.queryParams().contains("logOut")) {
+            if (request.queryParams().contains("logOut")) {
                 userAuthorized.remove(request.session().id());
                 model.put("loginPassword", "templates/loginPassTemplate.vtl");
                 return new ModelAndView(model, "templates/mainPageLayout.vtl");
             }
 
             String stringExpression = request.queryParams("expression");
+
             try {
                 result = Calculation.getDoubleResult(stringExpression);
             } catch (IllegalArgumentException e) {
