@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
+ *
  * Created by Alex Korneyko on 17.05.2016.
  */
 public class Web {
@@ -22,18 +23,18 @@ public class Web {
             Map<String, Object> model = new HashMap<>();
             double result = 0;
 
-            model.put("calculator", "templates/calculator.vtl");
-            model.put("history", "templates/history.vtl");
+            model.put("calculator", "templates/calculatorTemplate.vtl");
+            model.put("history", "templates/historyTemplate.vtl");
 
             if(Objects.equals(request.queryParams("logOut"), "Log Out")){
                 authorization[0] = false;
             }
 
             if (!(boolean) authorization[0])
-                model.put("loginPassword", "templates/loginPass.vtl");
+                model.put("loginPassword", "templates/loginPassTemplate.vtl");
             else {
                 model.put("userName", authorization[1]);
-                model.put("loginPassword", "templates/helloThere.vtl");
+                model.put("loginPassword", "templates/helloThereTemplate.vtl");
             }
 
             String stringExpression = request.queryParams("expression");
@@ -44,7 +45,7 @@ public class Web {
                 authorization[1] = login;
                 authorization[2] = password;
 
-                model.put("loginPassword", "templates/helloThere.vtl");
+                model.put("loginPassword", "templates/helloThereTemplate.vtl");
                 model.put("userName", login);
                 authorization[0] = true;
             }
@@ -76,7 +77,7 @@ public class Web {
 
         Spark.get("/registration", (request, response) -> {
 
-            return new ModelAndView(new HashMap(), "templates/registration.vtl");
+            return new ModelAndView(new HashMap(), "templates/registrationPage.vtl");
         }, new VelocityTemplateEngine());
     }
 }
